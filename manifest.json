@@ -1,0 +1,16 @@
+{
+  "name": "Safaa - Smart Environment",
+  "short_name": "Safaa",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#87CEEB",
+  "description": "System for monitoring classroom air quality",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1835/1835266.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
