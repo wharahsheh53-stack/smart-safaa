@@ -1,16 +1,40 @@
 {
-  "name": "Safaa - Smart Environment",
-  "short_name": "Safaa",
+  "name": "تطبيق صفاء الذكي",
+  "short_name": "صفاء",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#87CEEB",
-  "description": "System for monitoring classroom air quality",
+  "theme_color": "#0ea5e9",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/1835/1835266.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/1684/1684374.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ]
 }
+
+**الخطوة 2: إنشاء ملف باسم `sw.js` (Service Worker)**
+هذا الملف ضروري ليقبل المتصفح تثبيت التطبيق:
+```javascript
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open('safaa-store').then((cache) => cache.addAll([
+      'index.html',
+      'manifest.json'
+    ])),
+  );
+});
+
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    caches.match(e.request).then((response) => response || fetch(e.request)),
+  );
+});
+
+**الخطوة 3: طريقة التثبيت على الهاتف:**
+1. افتحي الرابط الخاص بك من متصفح **Chrome** (للأندرويد) أو **Safari** (للايفون).
+2. في **Chrome**: اضغطي على الثلاث نقاط في الزاوية واختاري "إضافة إلى الشاشة الرئيسية" أو "تثبيت التطبيق".
+3. في **Safari**: اضغطي على زر "المشاركة" (المربع الذي يخرج منه سهم) واختاري "Add to Home Screen".
+
+الآن سيظهر أيقونة التطبيق على شاشة هاتفك، وعند فتحها سيختفي شريط المتصفح ويظهر كأنه تطبيق محمل من المتجر تماماً.
