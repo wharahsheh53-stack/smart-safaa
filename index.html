@@ -267,5 +267,19 @@
             setInterval(fetchRealData, 30000);
         };
     </script>
+    <script>
+  // كود تسجيل "مشغل الخدمة" (Service Worker) في المتصفح
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then((registration) => {
+          console.log('تم تسجيل sw.js بنجاح:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('فشل تسجيل sw.js:', error);
+        });
+    });
+  }
+</script>
 </body>
 </html>
